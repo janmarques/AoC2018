@@ -1489,6 +1489,8 @@ foreach (var star in stars)
     constellation.ForEach(x => visitedStars.Add(x));
 }
 
+result = constellations.Count();
+
 timer.Stop();
 Console.WriteLine(result);
 Console.WriteLine(timer.ElapsedMilliseconds + "ms");
