@@ -956,7 +956,7 @@
 -73113";
 
 var smallInput =
-@"";
+@"-6, +3, +8, +5, -6";
 
 var smallest = "";
 
@@ -965,9 +965,22 @@ input = fullInput;
 //input = smallest;
 var timer = System.Diagnostics.Stopwatch.StartNew();
 
-var result = 0l;
+var result = 0;
 
-result = input.Replace("+", "").Split(Environment.NewLine).Select(int.Parse).Sum();
+var frequencies = new HashSet<int>();
+while (true)
+{
+    foreach (var item in input.Replace(", ", Environment.NewLine).Replace("+", "").Split(Environment.NewLine).Select(int.Parse))
+    {
+        result += item;
+        if (frequencies.Contains(result))
+        {
+            goto end;
+        }
+        frequencies.Add(result);
+    }
+}
+end:
 
 timer.Stop();
 Console.WriteLine(result);
